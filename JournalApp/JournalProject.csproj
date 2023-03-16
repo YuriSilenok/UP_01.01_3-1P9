@@ -76,6 +76,7 @@
     <Compile Include="Models\Group.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\GroupsViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\GroupWin.xaml.cs">
       <DependentUpon>GroupWin.xaml</DependentUpon>
