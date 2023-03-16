@@ -3,10 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="JournalApp.ViewModels"
         xmlns:local="clr-namespace:JournalApp"
         mc:Ignorable="d"
-        Title="GroupWindow" Height="450" Width="800"
-        Loaded="Window_Loaded">
+        Title="GroupWindow" Height="450" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -15,7 +15,9 @@
 
         <ListBox Grid.Column="0"
                  x:Name="students"
-                 ItemsSource="{Binding Students}">
+                 DataContext="{Binding StudentsViewModel}"
+                 ItemsSource="{Binding Items}"
+                 Loaded="students_Loaded">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -29,9 +31,12 @@
 
         <ListBox Grid.Column="1"
                  x:Name="disciplines"
-                 ItemsSource="{Binding Discipline}"
+                 DataContext="{Binding DisciplineViewModel}"
+                 ItemsSource="{Binding Items}"
                  DisplayMemberPath="Name"
-                 SelectionChanged="disciplines_SelectionChanged"/>
-        
+                 SelectionChanged="disciplines_SelectionChanged"
+                 Loaded="disciplines_Loaded">
+        </ListBox>
+
     </Grid>
 </Window>

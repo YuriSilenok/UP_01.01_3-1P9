@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using JournalApp.Models;
+using JournalApp.ViewModels;
 
 namespace JournalApp.Views
 {
@@ -25,18 +26,6 @@ namespace JournalApp.Views
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            disciplines.Items.Clear();
-            using (var db = new Entities())
-            {
-                Session.CurrentGroup.Jurnal
-                    .Where(j => j.Group1 == Session.CurrentGroup)
-                    .ToList().ForEach(j => disciplines.Items.Add(j.Discipline1));
-                Session.CurrentGroup.Student.ToList().ForEach(s => students.Items.Add(s));
-            }
-        }
-
         private void disciplines_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Session.CurrentDiscipline = disciplines.SelectedItem as Discipline;
@@ -44,6 +33,16 @@ namespace JournalApp.Views
             Hide();
             jurnalWindow.ShowDialog();
             Show();
+        }
+
+        private void students_Loaded(object sender, RoutedEventArgs e)
+        {
+            (sender as ListBox).DataContext = new StudentsViewModel();
+        }
+
+        private void disciplines_Loaded(object sender, RoutedEventArgs e)
+        {
+            (sender as ListBox).DataContext = new DisciplineViewModel();
         }
     }
 }
