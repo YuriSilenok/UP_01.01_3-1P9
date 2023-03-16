@@ -15,7 +15,6 @@
 
         <ListBox Grid.Column="0"
                  x:Name="students"
-                 DataContext="{Binding StudentsViewModel}"
                  ItemsSource="{Binding Items}"
                  Loaded="students_Loaded">
             <ListBox.ItemTemplate>
@@ -31,7 +30,6 @@
 
         <ListBox Grid.Column="1"
                  x:Name="disciplines"
-                 DataContext="{Binding DisciplineViewModel}"
                  ItemsSource="{Binding Items}"
                  DisplayMemberPath="Name"
                  SelectionChanged="disciplines_SelectionChanged"
